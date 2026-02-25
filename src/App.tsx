@@ -1,0 +1,190 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { PrivateRoute } from './components/PrivateRoute';
+import { Login } from './pages/Login';
+import { AdminLayout } from './layouts/AdminLayout';
+import { Dashboard } from './pages/Dashboard';
+import { Championships } from './pages/Championships';
+import { ChampionshipForm } from './pages/Championships/ChampionshipForm';
+import { AdminChampionshipDetails } from './pages/Championships/AdminChampionshipDetails';
+import { AdminMatchManager } from './pages/Championships/AdminMatchManager';
+import { AdminCategoryManager } from './pages/Championships/AdminCategoryManager';
+import { AdminTeamChampionshipManager } from './pages/Championships/AdminTeamChampionshipManager';
+import { AdminChampionshipAwards } from './pages/Championships/AdminChampionshipAwards';
+import { GroupDraw } from './pages/Championships/GroupDraw';
+import { Teams } from './pages/Teams';
+import { TeamForm } from './pages/Teams/TeamForm';
+import { TeamDetails } from './pages/Teams/TeamDetails';
+import { Players } from './pages/Players';
+import { PlayerForm } from './pages/Players/PlayerForm';
+import { Reports } from './pages/Admin/Reports';
+import { Settings } from './pages/Settings';
+import { Matches } from './pages/Matches';
+import { SumulaFutebol } from './pages/Matches/SumulaFutebol';
+import { CreateRaceWizard } from './pages/Corridas/CreateRaceWizard';
+import { RaceResults } from './pages/Corridas/RaceResults';
+import { NewEventSelection } from './pages/EventWizard/NewEventSelection';
+import { ClubList } from './pages/SuperAdmin/ClubList';
+import { ClubForm } from './pages/SuperAdmin/ClubForm';
+import { SystemSettings } from './pages/SuperAdmin/SystemSettings';
+import { IaLaboratory } from './pages/SuperAdmin/IaLaboratory';
+import { AdminProductManager } from './pages/Shop/AdminProductManager';
+import { TemporaryAccess } from './pages/Settings/TemporaryAccess';
+import { ArtEditor } from './pages/Admin/ArtEditor';
+
+import { Explore } from './pages/Public/Explore';
+import { ClubExplore } from './pages/Public/ClubExplore';
+import { EventDetails } from './pages/Public/EventDetails';
+import { EventMatches } from './pages/Public/EventMatches';
+import { EventLeaderboard } from './pages/Public/EventLeaderboard';
+import { EventStats } from './pages/Public/EventStats';
+import { EventMVP } from './pages/Public/EventMVP';
+import { EventParticipants } from './pages/Public/EventParticipants';
+import { EventArts } from './pages/Public/EventArts';
+
+import { PublicLayout } from './layouts/PublicLayout';
+import { SumulaLayout } from './layouts/SumulaLayout';
+import { PublicHome } from './pages/Public/Home';
+import { ClubHome } from './pages/Public/ClubHome';
+import { Wallet } from './pages/Public/Wallet';
+import { Agenda } from './pages/Public/Agenda';
+import { Shop } from './pages/Public/Shop';
+import { RaceDetails } from './pages/Public/RaceDetails';
+import { Register } from './pages/Register';
+import { Profile } from './pages/Public/Profile';
+import { MyTeams } from './pages/Public/MyTeams';
+import { MyTeamForm } from './pages/Public/MyTeamForm';
+import { MyTeamDetails } from './pages/Public/MyTeamDetails';
+import { MyInscriptions } from './pages/Public/MyInscriptions';
+import { MyOrders } from './pages/Public/MyOrders';
+import { Voting } from './pages/Public/Voting';
+import { ChampionshipInscription } from './pages/Public/ChampionshipInscription';
+import { SumulaVolei } from './pages/Matches/SumulaVolei';
+import { SumulaFutsal } from './pages/Matches/SumulaFutsal';
+import { SumulaBasqueteVoz } from './pages/Matches/SumulaBasqueteVoz';
+import { SumulaHandebol } from './pages/Matches/SumulaHandebol';
+import { SumulaBeachTennis } from './pages/Matches/SumulaBeachTennis';
+import { SumulaTenis } from './pages/Matches/SumulaTenis';
+import { SumulaFutebol7 } from './pages/Matches/SumulaFutebol7';
+import { SumulaFutevolei } from './pages/Matches/SumulaFutevolei';
+import { SumulaVoleiPraia } from './pages/Matches/SumulaVoleiPraia';
+import { SumulaTenisMesa } from './pages/Matches/SumulaTenisMesa';
+import { SumulaJiuJitsu } from './pages/Matches/SumulaJiuJitsu';
+import { MatchPrintView } from './pages/Matches/MatchPrintView';
+import { TestUpload } from './pages/Public/TestUpload';
+
+import { Toaster } from 'react-hot-toast';
+import { ScrollToTop } from './components/ScrollToTop';
+
+function App() {
+  return (
+    <BrowserRouter>
+      <ScrollToTop />
+      <Toaster position="top-right" />
+      <AuthProvider>
+        <Routes>
+          {/* ÁREA PÚBLICA (Visitante / Atleta) */}
+          <Route element={<PublicLayout />}>
+            <Route path="/" element={<PublicHome />} />
+            <Route path="/explore" element={<Explore />} />
+            <Route path="/club-home" element={<ClubHome />} />
+            <Route path="/club-home/:slug" element={<ClubHome />} />
+            <Route path="/club-home/:slug/explore" element={<ClubExplore />} />
+            <Route path="/club-home/:slug/championships" element={<ClubExplore />} />
+            <Route path="/wallet" element={<Wallet />} />
+            <Route path="/agenda" element={<Agenda />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/events/:id" element={<EventDetails />} />
+            <Route path="/events/:id/matches" element={<EventMatches />} />
+            <Route path="/events/:id/leaderboard" element={<EventLeaderboard />} />
+            <Route path="/events/:id/stats" element={<EventStats />} />
+            <Route path="/events/:id/mvp" element={<EventMVP />} />
+            <Route path="/events/:id/teams" element={<EventParticipants />} />
+            <Route path="/events/:id/awards" element={<EventArts />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/inscription/:id" element={<ChampionshipInscription />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/races/:id" element={<RaceDetails />} />
+            <Route path="/races/:id/results" element={<div className="p-10 text-center">Resultados (Em Breve)</div>} />
+            <Route path="/matches/:id/print" element={<MatchPrintView />} />
+            <Route path="/test-upload" element={<TestUpload />} />
+
+            {/* Athlete Private Area */}
+            <Route path="/profile/teams" element={<MyTeams />} />
+            <Route path="/profile/teams/new" element={<MyTeamForm />} />
+            <Route path="/profile/teams/:id" element={<MyTeamDetails />} />
+            <Route path="/profile/inscriptions" element={<MyInscriptions />} />
+            <Route path="/profile/orders" element={<MyOrders />} />
+            <Route path="/voting" element={<Voting />} />
+          </Route>
+
+          <Route path="/login" element={<Login />} />
+
+          {/* ÁREA ADMINISTRATIVA (Protegida) */}
+          <Route path="/admin" element={<PrivateRoute />}>
+            <Route element={<AdminLayout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="/admin/dashboard" element={<Navigate to="/admin" replace />} /> {/* Redirect legado */}
+
+              <Route path="championships" element={<Championships />} />
+              <Route path="championships/new" element={<NewEventSelection />} />
+              <Route path="championships/new/team-sports" element={<ChampionshipForm />} />
+              <Route path="championships/:id" element={<AdminChampionshipDetails />} />
+              <Route path="championships/:id/edit" element={<ChampionshipForm />} />
+              <Route path="championships/:id/categories" element={<AdminCategoryManager />} />
+              <Route path="championships/:id/teams" element={<AdminTeamChampionshipManager />} />
+              <Route path="championships/:id/matches" element={<AdminMatchManager />} />
+              <Route path="championships/:id/awards" element={<AdminChampionshipAwards />} />
+              <Route path="championships/:id/draw" element={<GroupDraw />} />
+              <Route path="races/new" element={<CreateRaceWizard />} />
+              <Route path="races/:id/results" element={<RaceResults />} />
+
+              <Route path="teams" element={<Teams />} />
+              <Route path="teams/:id" element={<TeamDetails />} />
+              <Route path="teams/new" element={<TeamForm />} />
+              <Route path="teams/:id/edit" element={<TeamForm />} />
+              <Route path="players" element={<Players />} />
+              <Route path="players/new" element={<PlayerForm />} />
+              <Route path="players/:id/edit" element={<PlayerForm />} />
+              <Route path="reports" element={<Reports />} />
+              <Route path="settings" element={<Settings />} />
+              <Route path="clubs-manage" element={<ClubList />} />
+              <Route path="clubs-manage/new" element={<ClubForm />} />
+              <Route path="clubs-manage/:id/edit" element={<ClubForm />} />
+              <Route path="system-settings" element={<SystemSettings />} />
+              <Route path="ia-lab" element={<IaLaboratory />} />
+              <Route path="products" element={<AdminProductManager />} />
+              <Route path="temporary-access" element={<TemporaryAccess />} />
+              <Route path="art-editor" element={<ArtEditor />} />
+
+              <Route path="matches" element={<Matches />} />
+            </Route>
+
+            {/* Rotas Fullscreen do Admin (fora do layout) */}
+            <Route element={<SumulaLayout />}>
+              <Route path="matches/:id/sumula" element={<SumulaFutebol />} />
+              <Route path="matches/:id/sumula-volei" element={<SumulaVolei />} />
+              <Route path="matches/:id/sumula-futsal" element={<SumulaFutsal />} />
+              <Route path="matches/:id/sumula-basquete" element={<SumulaBasqueteVoz />} />
+              <Route path="matches/:id/sumula-basquete-voz" element={<SumulaBasqueteVoz />} />
+              <Route path="matches/:id/sumula-handebol" element={<SumulaHandebol />} />
+              <Route path="matches/:id/sumula-beach-tennis" element={<SumulaBeachTennis />} />
+              <Route path="matches/:id/sumula-tenis" element={<SumulaTenis />} />
+              <Route path="matches/:id/sumula-futebol7" element={<SumulaFutebol7 />} />
+              <Route path="matches/:id/sumula-futevolei" element={<SumulaFutevolei />} />
+              <Route path="matches/:id/sumula-volei-praia" element={<SumulaVoleiPraia />} />
+              <Route path="matches/:id/sumula-tenis-mesa" element={<SumulaTenisMesa />} />
+              <Route path="matches/:id/sumula-jiu-jitsu" element={<SumulaJiuJitsu />} />
+            </Route>
+            <Route path="matches/:id/sumula-print" element={<MatchPrintView />} />
+          </Route>
+
+          {/* Fallback */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
+  );
+}
+
+export default App;
